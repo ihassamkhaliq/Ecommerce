@@ -3,6 +3,7 @@ const router = express.Router()
 const auth = require('../controllers/auth.controller.js')
 const admin = require('../controllers/admin.controller')
 
+
 router.route('/').
     get(auth.getSignIn).
     post(auth.auth, auth.signin)
