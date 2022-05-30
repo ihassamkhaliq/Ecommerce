@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
+    <script src="https://kit.fontawesome.com/a0ff578da8.js" crossorigin="anonymous"></script>
+<style>
+
+    @import url('https://fonts.googleapis.com/css?family=PT+Sans');
+    
+    body{
+      background-color: black;
+      font-family: 'PT Sans', sans-serif;
+    }
+    h2{
+      padding-top: 1.5rem;
+      color: #ffffff;
+    }
+    a{
+      color: rgb(253, 242, 242);
+    }
+    a:hover{
+      color: #0ab42f;
+      text-decoration: none;
+    }
+    .card{
+      border: 0.40rem solid #0ab42f;
+      background-color: #343A40;
+      top: 10%;
+    }
+    .form-control{
+      background-color: #ffffff;
+      padding: 20px;
+      padding: 25px 15px;
+      margin-bottom: 1.3rem;
+    }
+    
+    .form-control:focus {
+    
+        color: #252424;
+        background-color: rgb(255, 245, 245);
+        border: 3px solid #0ab42f;
+        outline: 0;
+        box-shadow: none;
+    
+    }
+    
+    .btn{
+      padding: 0.6rem 1.2rem;
+      background:#0ab42f; 
+      border: 2px solid #ffffff;
+    }
+    .btn-primary:hover {
+    
+        
+        background-color: #55b069;
+        border-color: white;
+      transition: .3s;
+    
+    }
+    
+    </style>
+</head>
+<body>
+    
+
+<div class="container align-items-center">
+    <div class="row justify-content-center" style="margin-top: 5%">
+    <div class="col-md-5">
+     <div class="card">
+       <h2 class="card-title text-center">Sign In</h2>
+        <div class="card-body py-md-4">
+         <form _lpchecked="1">
+          <div class="form-group">
+               <input type="email" class="form-control" id="email" placeholder="Email" name="email" required>
+                              </div>
+                              
+                            
+     <div class="form-group">
+       <input type="password" class="form-control" id="password" placeholder="Password" name="password" required>
+     </div>
+     <div class="d-flex flex-row align-items-center justify-content-between ">
+        <a href="/auth/signup">Create New Account</a>    
+        <button class="btn btn-primary" style="margin-left: 35%; padding: 5px 30px;">Login</button>
+            </div>
+         </form>
+       </div>
+    </div>
+  </div>
+  </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF" crossorigin="anonymous"></script>
+<script>
+    const form = document.querySelector('form');
+    form.addEventListener('submit',async (e)=>{
+        e.preventDefault()
+        const signInForm= await fetch("/auth/signin",{method:"POST",
+        body : JSON.stringify({
+            email: form.email.value,
+            password : form.password.value
+        }),
+        headers : {'Content-Type': 'application/json',
+        'Accept': 'application/json'}
+    })
+    const dataSignIn = await signInForm.json(); 
+    console.log("Sign In EJS Template=============>>>>>>>>>>>",dataSignIn.status)   
+    if(dataSignIn.status == false){
+    location.assign('/users/home')
+  }else if(dataSignIn.status == true){
+    location.assign('/admin/dashboard')
+  }else{
+    alert("User Not Found")
+  }
+
+    })
+</script>
+  
+</body>
+</html>

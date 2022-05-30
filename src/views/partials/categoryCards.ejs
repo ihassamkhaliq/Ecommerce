@@ -1,0 +1,14 @@
+<h1 style="text-align:center; margin-top: 2%; ">Categories</h1>
+<% foundCategories.forEach(function(categories){ %>
+    <div style="margin: 1% 4.8%; display: inline-block;">
+        <div class="card" style="width: 18rem;">
+            <img src="../3.jpg" class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="card-title"><%=categories.name%></h5>
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                <a href="/categories/<%=categories.id%>/products"class="btn btn-primary">View More</a>
+            </div>
+        </div>
+    </div>
+    <% }); %>
+    
